@@ -5,6 +5,10 @@ pipeline {
         }
     }
 
+    tools {
+        gradle 'gradle-7-4'
+    }
+
     stages {
         stage ('Sonar Quality Test') {
             steps {
