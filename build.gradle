@@ -24,11 +24,3 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
-
-
-sonarqube {
-    properties {
-        property 'sonar.host.url', 'http://3.110.136.39'
-        property 'sonar.login', '******'
-    }
-}
