@@ -8,7 +8,9 @@ pipeline {
         stage ('Sonar Code Analysis') {
             steps {
                 script {
-                    echo "Ongoing"
+                    withSonarQubeEnv('sonarqube-server') {
+                        sh 'gradle sonarqube'
+                    }
                 }
             }
         }
