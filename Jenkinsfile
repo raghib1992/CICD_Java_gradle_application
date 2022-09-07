@@ -31,7 +31,7 @@ pipeline {
                     withCredentials([string(credentialsId: 'docker-repo', variable: 'repo_credential')]) {
                         sh '''
                             docker build -t 43.205.228.101:8083/myapp:${VERSION} .
-                            docker login -u admin -p $repo_credential 43.205.228.101:8083
+                            docker login -u admin -p $repo_credential 43.205.228.101:8085
                             docker push 43.205.228.101:8083/myapp:${VERSION}
                             docker rmi 43.205.228.101:8083/myapp:${VERSION}
                         '''
