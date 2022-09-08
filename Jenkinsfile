@@ -51,7 +51,7 @@ pipeline {
                 }
             }    
         }
-        stage ('Docker Build and Docker Push') {
+        stage ('Helm Chart Push') {
             steps {
                 script{
                     withCredentials([string(credentialsId: 'docker-repo', variable: 'repo_credential')]) {
