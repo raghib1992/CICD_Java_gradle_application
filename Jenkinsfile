@@ -7,6 +7,7 @@ pipeline {
 
     environment {
         VERSION = "${env.BUILD_ID}"
+        REPO_HOST = "3.110.131.39:8085"
     }
 
     stages {
@@ -30,10 +31,10 @@ pipeline {
                 script{
                     withCredentials([string(credentialsId: 'docker-repo', variable: 'repo_credential')]) {
                         sh '''
-                            docker build -t 43.205.228.101:8085/myapp:${VERSION} .
-                            docker login -u admin -p $repo_credential 43.205.228.101:8085
-                            docker push 43.205.228.101:8085/myapp:${VERSION}
-                            docker rmi 43.205.228.101:8085/myapp:${VERSION}
+                            docker build -t ${REPO_HOST}/myapp:${VERSION} .
+                            docker login -u admin -p $repo_credential ${REPO_HOST}
+                            docker push ${REPO_HOST}/myapp:${VERSION}
+                            docker rmi ${REPO_HOST}/myapp:${VERSION}
                         '''
                     }
                 }
