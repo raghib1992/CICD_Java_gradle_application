@@ -41,11 +41,13 @@ pipeline {
             }
         }
         stage ('Helm chart config analysis by datree'){
-            script {
-                dir('kubernetes') {
-                    sh 'helm datree test --include-tests myapp/'
+            steps{
+                script {
+                    dir('kubernetes') {
+                        sh 'helm datree test --include-tests myapp/'
+                    }
                 }
-            }
+            }    
         }
     }
     post {
