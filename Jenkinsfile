@@ -51,6 +51,22 @@ pipeline {
                 }
             }    
         }
+        stage ('Docker Build and Docker Push') {
+            steps {
+                script{
+                    withCredentials([string(credentialsId: 'docker-repo', variable: 'repo_credential')]) {
+                        dir('kubernetes') {
+                            sh '''
+                            helmversion=$(helm show chart myapp | grep version | cut -d: -f2 | tr -d ' ')
+                            tar -czvf myapp-0.2.0.tgz myapp/                         
+                            curl -u admin:$repo_credential http://172.31.37.20:8081/repository/helm-repo/ --upload-file myapp-${helmversion}.tgz -v
+                        '''
+                        }
+                        
+                    }
+                }
+            }
+        }
     }
     post {
         always {
