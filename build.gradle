@@ -28,6 +28,6 @@ test {
 
 sonarqube {
     properties {
-        property 'sonar.host.url', 'http://13.127.116.141:9000'
+        property 'sonar.host.url', 'http://13.233.86.229:9000'
     }
 }
