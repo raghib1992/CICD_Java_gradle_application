@@ -14,7 +14,7 @@ pipeline {
         stage ('Sonar Code Analysis') {
             steps {
                 script {
-                    withSonarQubeEnv('sonarqube-server') {
+                    withSonarQubeEnv(credentialsId: 'sonar-token') {
                         sh 'gradle sonarqube'
                     }
                     timeout(3) {
